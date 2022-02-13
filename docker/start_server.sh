@@ -40,7 +40,7 @@ if [[ ! -f "/app/initialized" ]]; then
     # setup symlinks for volume files
     symlink_client_files
     symlink_config_files
-    # do not run symlinks more than once
+    # do not create symlinks more than once
     touch /app/initialized
 else
     echo "Server already initialized"
@@ -50,5 +50,5 @@ fi
 echo "Starting MasterServer"
 ./MasterServer
 echo "MasterServer exited with $?"
-echo "[WARNING] The container stays online. With this you should be able to explorer the server files including log files"
+echo "[WARNING] The container stays online. With this you should be able to explore the server files including log files"
 tail -f /dev/null

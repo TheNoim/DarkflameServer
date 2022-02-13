@@ -95,7 +95,7 @@ if [[ ! -d "/client" ]]; then
 fi
 
 if [[ "${CLIENT_TYPE@L}" != "packed" && "${CLIENT_TYPE@L}" != "unpacked" && "${CLIENT_TYPE@L}" != "auto" ]]; then
-    echo "[ERROR] Unknown CLIENT_TYPE"
+    echo "[ERROR] Unknown CLIENT_TYPE: ${CLIENT_TYPE}"
     exit 16
 fi
 
@@ -106,8 +106,8 @@ if [[ "${CLIENT_TYPE@L}" == "auto" ]]; then
     fi
 
     if [[ -f "/client/legouniverse.exe" ]]; then
-        # Look for a unpacked file. If it doesn't exist, then we can assume the user provided a packed client
-        # with a client structure like a unpacked client. At this point we can't continue the process. 
+        # Look for an unpacked file. If it doesn't exist, then we can assume the user provided a packed client
+        # with a client structure like an unpacked client. At this point we can't continue the process. 
         # Without the versions directory lunpack can't extract the client files
         if [[ ! -f "/client/res/CDClient.fdb" ]]; then
             echo "[ERROR] You provided a packed client without the versions directory"
@@ -168,7 +168,7 @@ if [[ ! -f "/docker/extracted" ]]; then
     touch /docker/extracted
 else
     echo "Client already extracted. Skip this step..."
-    echo "If you want to force a re-extract, run one of the following commands depending on which composer version you are using:"
+    echo "If you want to force a re-extract, run one of the following commands depending on which Docker Compose version you are using:"
     echo "docker compose run setup rm /docker/extracted"
     echo "docker-compose run setup rm /docker/extracted"
 fi
@@ -181,7 +181,7 @@ if [[ ! -f "/docker/migrated" ]]; then
     touch /docker/migrated
 else
     echo "Client db already migrated. Skip this step..."
-    echo "If you want to force a re-migrate, run one of the following commands depending on which composer version you are using:"
+    echo "If you want to force a re-migrate, run one of the following commands depending on which Docker Compose version you are using:"
     echo "docker compose run setup rm /docker/migrated"
     echo "docker-compose run setup rm /docker/migrated"
 fi
